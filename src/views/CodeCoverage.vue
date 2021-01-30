@@ -40,9 +40,6 @@ export default {
       { text: "NumLinesCovered", value: "NumLinesCovered" },
       { text: "NumLinesUncovered", value: "NumLinesUncovered" },
       { text: "Code Coverage Percentage", value: "percentage" },
-      //   { text: "Carbs", value: "carbs" },
-      //   { text: "Protein", value: "protein" },
-      //   { text: "Iron", value: "iron" },
     ],
     info: [],
   }),
@@ -52,11 +49,9 @@ export default {
     this.environment = this.$store.state.environment;
     this.authCode = this.$store.state.authCode;
     this.accessToken = this.$store.state.accessToken;
-    let number = [];
-    let resultNumLineCov = [];
-    let resultNumLineNotCov = [];
+
     console.log("accessToken = ", this.$store.state.accessToken);
-    //console.log(typeof this.resdata);
+
     axios({
       method: "get",
       url: `https://cors-anywhere.herokuapp.com/https://ap5.salesforce.com/services/data/v50.0/tooling/query/?q=SELECT+NumLinesCovered,+NumLinesUncovered,+Coverage+FROM+ApexCodeCoverage`,
@@ -69,24 +64,16 @@ export default {
 
       crossdomain: true,
     }).then((response) => {
-      //console.log(response.data.records);
       this.resdata = JSON.parse(JSON.stringify(response.data.records));
       console.log(this.resdata);
-      const keys = Object.keys(this.resdata);
-      console.log(keys);
-      number = keys;
-      // const values = Object.values(this.resdata);
-      // this.resdata = values;
-      //console.log(this.resdata);
+
       Object.keys(this.resdata).forEach((key) => {
-        //console.log(key, this.resdata[key].NumLinesCovered);
+        //looping through response data
         let linesCovered = this.resdata[key].NumLinesCovered;
         let linesNotCovered = this.resdata[key].NumLinesUncovered;
-        // resultNumLineCov.push(linesCovered);
-        // resultNumLineNotCov.push(linesNotCovered);
-
         let totalLines = linesCovered + linesNotCovered;
         let percentage = ((linesCovered / totalLines) * 100).toFixed(2);
+        //creating object to store relevent data
         let obj = {
           sno: Number(key) + 1,
           name: this.resdata[key].attributes.url,
@@ -97,14 +84,9 @@ export default {
         };
         this.info.push(obj);
       });
-      // console.log(number);
-      // console.log(resultNumLineCov);
-      // console.log(resultNumLineNotCov);
+
       console.log(this.info);
     });
-    // console.log(number);
-    // console.log(resultNumLineCov);
-    // console.log(resultNumLineNotCov);
   },
 };
 </script>

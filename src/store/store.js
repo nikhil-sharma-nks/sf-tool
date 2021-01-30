@@ -10,12 +10,12 @@ export default new Vuex.Store({
       "3MVG9n_HvETGhr3Ao6N8bdy6kmq_n37n2cTUbKSuUVPJSELHZGmjJB1d0BGeCbYm02pvcnx_Pa8XswuPvZ.3i",
     clientSecret:
       "E5A84ACB55F3ED8F9D87A191DC18E4A345FC74A8DEEF950E92A9BD0CA42F81ED",
-    environment: "",
-    authCode: "",
+    environment: "", //used for knowing which route to use login or test for auth(x.salesforce.com)
+    authCode: "", //authentication code which we get after sign in callback.
     accessToken: "",
   },
-  getters: {},
-  plugins: [createPersistedState()],
+
+  plugins: [createPersistedState()], //using to still be able to access data after refresh
   mutations: {
     setEnvironment(state, payload) {
       console.log("Inside setEnvironment Mutation payload = ", payload);
@@ -30,6 +30,4 @@ export default new Vuex.Store({
       state.accessToken = payload;
     },
   },
-  actions: {},
-  strict: false,
 });

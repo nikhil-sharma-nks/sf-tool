@@ -1,12 +1,17 @@
 <template>
   <div class="callback">
-    <h1>this is an a callback page</h1>
-    <p>AUTHORISATION CODE = {{ requestToken }}</p>
+    <h1>Loading CodeCoverage ...</h1>
+    <!-- <p>AUTHORISATION CODE = {{ requestToken }}</p>
     <p>ACCESS TOKEN = {{ accessToken }}</p>
-    <p>ENVIRONMENT = {{ environment }}</p>
+    <p>ENVIRONMENT = {{ environment }}</p> -->
   </div>
 </template>
 
+// In this component - callback // 1 - we are redirected to
+localhost:3000/callback after authentication with authentication code in url
+parameter // 2 - receving auth code from param and saving in state // 3 -
+sending post request to get access token saving it in state // 4 - we are
+redirected to codecoverage page
 <script>
 import Vue from "vue";
 import axios from "axios";
@@ -16,10 +21,8 @@ import CodeCoverage from "../views/CodeCoverage.vue";
 Vue.use(VueAxios, axios);
 export default {
   name: "App",
-  response: false,
 
   data: () => ({
-    items: ["Production", "Sandbox"],
     requestToken: "",
     accessToken: "",
     environment: "",
@@ -43,7 +46,7 @@ export default {
       // make a POST request
       method: "post",
       mode: "cors",
-      url: `https://cors-anywhere.herokuapp.com/https://login.salesforce.com/services/oauth2/token?grant_type=authorization_code&code=${requestToken}&client_id=${clientID}&client_secret=${clientSecret}&redirect_uri=http://localhost:3000/callback`,
+      url: `https://cors-anywhere.herokuapp.com/https://ap5.salesforce.com/services/oauth2/token?grant_type=authorization_code&code=${requestToken}&client_id=${clientID}&client_secret=${clientSecret}&redirect_uri=http://localhost:3000/callback`,
       headers: {
         "Access-Control-Allow-Origin": "*",
         "Content-Type": "application/json",
@@ -59,7 +62,7 @@ export default {
       this.accessToken = accessToken;
       this.$store.commit("setAccessToken", accessToken);
       console.log(this.$store.state.environment);
-      this.$router.push("codecoverage");
+      this.$router.push("codecoverage"); //after getting access token redirecting to code-coverage
     });
   },
 };
