@@ -1,42 +1,62 @@
 <template>
-  <v-app>
-    <v-container>
-      <v-row align="center" class="d-flex justify-center">
-        <div class="col-md-6">
-          <h1 style="text-align:center">Salesforce Tool</h1>
-          <br />
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-        </div>
-      </v-row>
-      <br />
-      <v-form align="center" @submit.prevent="handleClick">
-        <v-row align="center" class="d-flex justify-center">
-          <v-col cols="4">
-            <label><strong> Choose Environment : </strong></label>
-            <v-select
-              :items="items"
-              label="Choose Environment"
-              v-model="environment"
-              required
+  <v-container fluid>
+    <div style="margin-top:80px;">
+      <v-row align="center">
+        <v-card
+          elevation="24"
+          outlined
+          shaped
+          class="card-curved mx-auto"
+          max-width="90%"
+        >
+          <v-row>
+            <v-col cols="6">
+              <div style="padding:30px;">
+                <h1 style="text-align:center">Salesforce Tool</h1>
+                <br />
+                <p style="text-align:center">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                  irure dolor in reprehenderit in voluptate velit esse cillum
+                  dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                  cupidatat non proident, sunt in culpa qui officia deserunt
+                  mollit anim id est laborum.
+                </p>
+              </div>
+            </v-col>
+
+            <div
+              style="padding:30px;margin-top:30px;text-align:center"
+              class="col col-6"
             >
-            </v-select>
-            <v-btn type="submit" color="primary">
-              Log In
-            </v-btn>
-            <p v-if="error">{{ error_message }}</p>
-          </v-col>
-        </v-row>
-      </v-form>
-    </v-container>
-  </v-app>
+              <v-col cols="12" align="center">
+                <v-form
+                  align="center"
+                  @submit.prevent="handleClick"
+                  style="text-align:center; "
+                >
+                  <label><strong> Choose Environment : </strong></label>
+                  <v-select
+                    :items="items"
+                    label="Choose Environment"
+                    v-model="environment"
+                    required
+                  >
+                  </v-select>
+                  <v-btn type="submit" color="primary">
+                    Log In
+                  </v-btn>
+                </v-form>
+                <p v-if="error">{{ error_message }}</p>
+              </v-col>
+            </div>
+          </v-row>
+        </v-card>
+      </v-row>
+    </div>
+  </v-container>
 </template>
 
 <script>

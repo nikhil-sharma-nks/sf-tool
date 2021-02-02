@@ -1,9 +1,24 @@
 <template>
   <div class="callback">
-    <h1>Loading CodeCoverage ...</h1>
+    <!-- <h1>Loading CodeCoverage ...</h1> -->
     <!-- <p>AUTHORISATION CODE = {{ requestToken }}</p>
     <p>ACCESS TOKEN = {{ accessToken }}</p>
     <p>ENVIRONMENT = {{ environment }}</p> -->
+    <v-container style="height: 400px;">
+      <v-row class="fill-height" align-content="center" justify="center">
+        <v-col class="subtitle-1 text-center" cols="12">
+          Loading CodeCoverage ...
+        </v-col>
+        <v-col cols="12">
+          <v-progress-linear
+            color="deep-purple accent-4"
+            indeterminate
+            rounded
+            height="12"
+          ></v-progress-linear>
+        </v-col>
+      </v-row>
+    </v-container>
   </div>
 </template>
 
