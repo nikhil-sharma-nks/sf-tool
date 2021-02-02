@@ -1,3 +1,6 @@
+vue-based project uses salesforce tooling api to retrieve code-coverage meta data after oauth2 authentication
+
+
 # sf-tool
 
 ## Project setup
